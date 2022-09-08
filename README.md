@@ -10,7 +10,7 @@ Android 6.0 ～ 13.0 及 鸿蒙
 开源部分为演示产品，不包含核心代码，成品Demo前往右手边 [Releases](https://github.com/FSpaceCore/SpaceCore/releases) 中下载。
 其Demo中包含所有功能在SDK中均有提供，包含未展示部分。
 
-如需使用SDK，请联系 [Telegram](https://t.me/mamamia412) 
+如需使用SDK、定制等，请联系 [Telegram](https://t.me/android_space_core) 
 
 功能 | 是否支持
 ---|---
