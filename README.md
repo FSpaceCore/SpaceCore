@@ -12,7 +12,7 @@ Android 6.0 ～ 13.0 及 鸿蒙
 
 如需使用SDK，请联系 [Telegram](https://t.me/mamamia412) 
 
-功能 | 
+功能 | 是否支持
 ---|---
 NativeHook | 支持
 JavaHook | 支持
