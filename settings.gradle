@@ -1,0 +1,3 @@
+rootProject.name = "FDemo"
+include ':app'
+include ':flib'

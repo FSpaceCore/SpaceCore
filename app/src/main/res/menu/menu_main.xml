@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main_user"
+        android:icon="@drawable/ic_arrow_swap_light"
+        android:title="@string/user_list"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/main_name"
+        android:title="@string/change_name"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/main_release_memory"
+        android:title="@string/release_memory"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/main_import_data"
+        android:icon="@drawable/ic_cloud_download_dark"
+        android:title="@string/import_data"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/main_fake_device"
+        android:icon="@drawable/ic_device_light"
+        android:title="@string/fake_device_setting"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/main_xposed"
+        android:icon="@drawable/ic_xposed_dark"
+        android:title="@string/xposed_manager"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">flib</string>
+    <string name="fv_service_name">:system_process</string>
+    <string name="not_install_app">未安装该应用</string>
+    <string name="compress_error">压缩失败，无法导出</string>
+    <string name="decompression_error">解压数据失败，无法导入</string>
+    <string name="not_support_32bit">该内核不支持32位应用</string>
+    <string name="not_support_64bit">该内核不支持64位应用</string>
+    <string name="install_error">安装错误</string>
+    <string name="parse_apk_error">解析安装包出错</string>
+    <string name="get_package_archive_error">getPackageArchiveInfo 解析安装包出错，请检查APK是否正常</string>
+    <string name="open_error">打开APK失败</string>
+    <string name="parse_data_error">解析数据失败</string>
+    <string name="export_data_error">导出数据失败</string>
+</resources>

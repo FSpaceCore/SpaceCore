@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:background="@drawable/bg_tab_select_parent"
+    android:paddingHorizontal="4dp"
+    android:paddingBottom="4dp">
+
+    <ImageView
+        android:id="@+id/account"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_language"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@drawable/base_primary_text_selector" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@drawable/base_primary_text_selector"
+        app:layout_constraintBottom_toBottomOf="@id/account"
+        app:layout_constraintEnd_toStartOf="@id/deleteUser"
+        app:layout_constraintStart_toEndOf="@id/account"
+        app:layout_constraintTop_toTopOf="@id/account"
+        tools:text="用户123" />
+
+    <ImageView
+        android:id="@+id/deleteUser"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_clear"
+        app:layout_constraintBottom_toBottomOf="@id/account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/userName"
+        app:layout_constraintTop_toTopOf="@id/account"
+        app:tint="@drawable/base_primary_text_selector" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/userPreview"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="@drawable/bg_user_select_info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
