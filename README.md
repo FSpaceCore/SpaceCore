@@ -39,7 +39,8 @@ armeabi-v7a | 支持
 
 ## 最新更新
 ------
-9、修复某宝crash<br/>
+10、修复Messenger崩溃问题<br/>
+9、修复某宝崩溃问题<br/>
 8、支持 launchIntent API<br/>
 7、兼容更多含有插件化功能的应用<br/>
 6、修复免安装运行模式下apache问题<br/>
