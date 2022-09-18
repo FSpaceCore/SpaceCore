@@ -10,7 +10,7 @@ Also support Huawei HarmonyOS
 ## Demo
 The open source release is only for Demo, it doesn't contain core codes.Download demo [Releases](https://github.com/FSpaceCore/SpaceCore/releases).
 
-If you need customized code, contact me [Telegram](https://t.me/android_space_core) 
+If you need customized code, contact me  **Email: support@spacecore.dev**
 
 Feature | Support
 ---|---
