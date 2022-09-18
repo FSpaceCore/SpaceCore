@@ -85,6 +85,7 @@ PackageRule.Builder builder = new PackageRule.Builder("com.tencent.mm",
 
 ## 最新更新
 ------
+12、初步支持规则配置系统<br/>
 11、修复某团无法使用微信登陆问题<br/>
 10、修复Messenger崩溃问题<br/>
 9、修复某宝崩溃问题<br/>
