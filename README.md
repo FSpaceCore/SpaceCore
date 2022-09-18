@@ -37,6 +37,52 @@ Sim卡隐藏 | 支持
 arm64-v8a | 支持
 armeabi-v7a | 支持
 
+## 规则配置系统
+在面对各种应用时，支持配置不同的运行时参数，虚拟机参数来达到适配，SpaceCore支持强大的规则配置系统，能对每个应用定制专属的规则，可以通过云配置方式，动态更新规则库。规则支持的功能正在逐步开发。
+
+```java
+PackageRule.Builder builder = new PackageRule.Builder("com.tencent.mm",
+                /*作用域进程，如果所有进程则留空*/
+                "com.tencent.mm", "com.tencent.mm:tools", "com.tencent.mm:appbrand1", "com.tencent.mm:appbrand2")
+
+                // 禁用某个Activity
+                .addBlackActivity("com.tencent.mm.plugin.base.stub.WXEntryActivity")
+                // 禁用某个广播
+                .addBlackBroadcast("com.tencent.mm.plugin.appbrand.task.AppBrandTaskPreloadReceiver")
+                // 禁用某个服务
+                .addBlackService("com.tencent.mm.plugin.backup.backuppcmodel.BackupPcService")
+                // 禁用某个ContentProvider
+                .addBlackContentProvider("androidx.startup.InitializationProvider")
+                // 预加载进程，可预先启动某个进程 加快运行时体验速度。
+                .addPreloadProcessName("com.tencent.mm:appbrand1")
+                // 禁止某个进程启动
+                .addBlackProcessName("com.tencent.mm:appbrand2")
+                // 禁止访问某文件
+                .addBlackIO("/proc/self/maps")
+                // 重定向某文件
+                .addRedirectIO("/proc/self/cmdline", "/proc/self/fake-cmdline")
+                // 隐藏Root
+                .isHideRoot(true)
+                // 隐藏Sim
+                .isHideSim(true)
+                // 隐藏VPN
+                .isHideVpn(true)
+                // 许多等等....
+
+                // 设置环境语言
+                .setLanguage("zh")
+                // 设置当前所在区域
+                .setRegion("CN")
+                // 设置当前时区
+                .setTimeZone("Asia/Shanghai");
+        PackageRule build = builder.build();
+        // 加入规则
+        FRuleCore.get().addRule(build);
+        
+        // 可云下发配置内容
+        String json = new Gson().toJson(build);
+```
+
 ## 最新更新
 ------
 11、修复某团无法使用微信登陆问题<br/>
