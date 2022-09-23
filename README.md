@@ -85,6 +85,7 @@ PackageRule.Builder builder = new PackageRule.Builder("com.tencent.mm",
 
 ## 最新更新
 ------
+17、修复ActivityStack的一些问题<br/>
 16、兼容targetSdkVersion至32<br/>
 15、修复微信某些情况下的崩溃<br/>
 14、修复低版本手机启动应用慢的问题、常见 微信、抖音等。<br/>
