@@ -132,6 +132,10 @@ class MainActivity : BaseActivity() {
             }
 
             R.id.main_index -> {
+                startBrowser("https://spacecore.dev/")
+            }
+
+            R.id.main_github -> {
                 startBrowser("https://github.com/FSpaceCore/SpaceCore")
             }
 
@@ -147,6 +151,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun startBrowser(url: String?) {
+        if (url.isNullOrEmpty()) {
+            showSnackBar(getString(R.string.config_load_fail))
+            return
+        }
         runCatching {
             val uri = Uri.parse(url)
             val intent = Intent()

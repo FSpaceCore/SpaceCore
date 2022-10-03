@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fvbox.R
 import com.fvbox.app.base.BaseViewModel
-import com.fvbox.data.AppRepository
 import com.fvbox.data.BackRepository
 import com.fvbox.data.BoxRepository
 import com.fvbox.data.bean.box.BoxAppBean

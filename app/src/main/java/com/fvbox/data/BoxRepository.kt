@@ -6,7 +6,7 @@ import com.fvbox.data.bean.box.BoxInstallBean
 import com.fvbox.data.bean.box.BoxUserInfo
 import com.fvbox.data.bean.local.LocalAppBean
 import com.fvbox.lib.FCore
-import com.fvbox.lib.utils.AbiUtils
+import com.fvbox.util.AbiUtils
 import com.fvbox.util.ContextHolder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -124,20 +124,20 @@ object BoxRepository {
      * @return List<FUserInfo>
      */
     fun getUserList(): List<BoxUserInfo> {
-        return FCore.get().getUsers().map {
-            BoxUserInfo(it.id)
-        }
+        return listOf(
+            BoxUserInfo(0)
+        )
     }
 
     /**
      * 新建用户
      */
     fun createUser() {
-        FCore.get().apply {
-            val list = getUsers()
-            val lastID = list.lastOrNull()?.id ?: -1
-            createUser(lastID + 1)
-        }
+//        FCore.get().apply {
+//            val list = getUsers()
+//            val lastID = list.lastOrNull()?.id ?: -1
+//            createUser(lastID + 1)
+//        }
     }
 
     /**
@@ -145,7 +145,7 @@ object BoxRepository {
      * @param userID Int 用户ID
      */
     fun deleteUser(userID: Int) {
-        FCore.get().deleteUser(userID)
+//        FCore.get().deleteUser(userID)
     }
 
     /**

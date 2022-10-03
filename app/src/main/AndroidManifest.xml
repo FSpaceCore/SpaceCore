@@ -38,15 +38,6 @@
         <activity android:name=".app.ui.install.BoxInstallActivity" />
         <activity android:name=".app.ui.setting.PreferenceActivity" />
         <activity android:name=".app.ui.setting.search.SearchActivity" />
-        <activity
-            android:name=".app.ui.login.LoginActivity"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name=".app.ui.main.ShortcutActivity"
-            android:excludeFromRecents="true"
-            android:exported="true" />
-        <activity android:name=".app.ui.web.WebActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -55,7 +46,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepath" />
+                android:resource="@xml/file_path" />
         </provider>
 
     </application>

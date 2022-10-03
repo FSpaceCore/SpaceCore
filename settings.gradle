@@ -1,3 +1,2 @@
-rootProject.name = "FDemo"
+rootProject.name = "SpaceCoreLite"
 include ':app'
-include ':flib'

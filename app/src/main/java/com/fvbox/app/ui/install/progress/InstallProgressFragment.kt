@@ -22,7 +22,6 @@ import com.fvbox.util.showToast
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.GenericItem
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
-import com.mikepenz.fastadapter.adapters.ModelAdapter
 import com.mikepenz.fastadapter.diff.DiffCallback
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import com.mikepenz.fastadapter.listeners.ClickEventHook
@@ -110,7 +109,7 @@ class InstallProgressFragment : BaseFragment(R.layout.fragment_install_progress)
 
         viewModel.boxActionState.observe(viewLifecycleOwner) {
             if (it is BoxActionState.Success) {
-                showSnackBar(getString(R.string.install_success))
+                showSnackBar(getString(R.string.install_finish))
                 val intent = Intent()
                 intent.putExtra(INTENET_SUCCESS, true)
                 requireActivity().setResult(AppCompatActivity.RESULT_OK, intent)

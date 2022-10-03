@@ -11,10 +11,18 @@ import com.fvbox.lib.FCore
 object ProcessUtil {
 
     fun currentBit(): Int {
-        return 0
+        return if (FCore.is64Bit()) {
+            64
+        } else {
+            32
+        }
     }
 
     fun noSupportBit(): Int {
-        return 0
+        return return if (FCore.is64Bit()) {
+            32
+        } else {
+            64
+        }
     }
 }

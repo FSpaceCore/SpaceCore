@@ -17,7 +17,20 @@ class BoxApplication : Application() {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         FCore.get().init(this)
+        if (FCore.isClient()) {
+            return
+        }
+
         ContextHolder.init(base)
         BoxRepository.initLocalAppList()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        if (FCore.isClient()) {
+            return
+        }
+
+        // do...
     }
 }

@@ -6,7 +6,6 @@ import android.widget.ImageView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.fvbox.R
-import com.fvbox.app.ui.install.progress.InstallItemItem
 import com.fvbox.data.bean.box.BoxUserInfo
 import com.fvbox.databinding.ItemUserSelectBinding
 import com.fvbox.util.CaptureUtil

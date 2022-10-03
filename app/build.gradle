@@ -16,26 +16,16 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        flavorDimensions "D64"
+        flavorDimensions "D32"
     }
 
     productFlavors {
         D32 {
-            applicationId "com.fdemo32"
+            applicationId "dev.spacecore32"
             ndk {
                 abiFilters "armeabi-v7a"
             }
-            resValue "string", "app_name", "FDemo32"
-            manifestPlaceholders = [APP_ICON      : "@mipmap/ic_launcher",
-                                    APP_ROUND_ICON: "@mipmap/ic_launcher_round"]
-        }
-
-        D64 {
-            applicationId "com.fdemo64"
-            ndk {
-                abiFilters "arm64-v8a"
-            }
-            resValue "string", "app_name", "FDemo64"
+            resValue "string", "app_name", "SCoreLite32"
             manifestPlaceholders = [APP_ICON      : "@mipmap/ic_launcher",
                                     APP_ROUND_ICON: "@mipmap/ic_launcher_round"]
         }
@@ -66,7 +56,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
@@ -84,7 +73,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
-
     implementation "com.afollestad.material-dialogs:core:$materialDialogVersion"
     implementation "com.afollestad.material-dialogs:bottomsheets:$materialDialogVersion"
     implementation "com.afollestad.material-dialogs:input:$materialDialogVersion"
@@ -93,12 +81,6 @@ dependencies {
     implementation "com.mikepenz:fastadapter-extensions-binding:${fastAdapterVersion}"
     implementation "com.mikepenz:fastadapter-extensions-utils:${fastAdapterVersion}"
     implementation "com.mikepenz:fastadapter-extensions-diff:${fastAdapterVersion}"
-
-    implementation "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitAdapterVersion"
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitConverterVersion"
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttp3"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3"
 
     implementation "com.geyifeng.immersionbar:immersionbar:$rootProject.ext.immersionbarVersion"
     implementation "com.geyifeng.immersionbar:immersionbar-ktx:$rootProject.ext.immersionbarVersion"
@@ -111,6 +93,6 @@ dependencies {
     implementation 'com.github.Ferfalk:SimpleSearchView:0.2.0'
     implementation 'com.github.Othershe:CornerLabelView:1.0.0'
 
-    implementation project(':flib')
     implementation 'com.elvishew:xlog:1.10.1'
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
 }

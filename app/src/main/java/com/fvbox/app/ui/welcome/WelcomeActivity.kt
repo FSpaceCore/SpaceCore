@@ -6,7 +6,6 @@ import android.os.Bundle
 import com.fvbox.R
 import com.fvbox.app.base.BaseActivity
 import com.fvbox.app.ui.main.MainActivity
-import com.fvbox.data.AppRepository
 import com.fvbox.util.showToast
 import com.permissionx.guolindev.PermissionX
 

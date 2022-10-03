@@ -1,0 +1,146 @@
+<resources>
+    <!--    <string name="app_name">FvBox</string>-->
+    <string name="done">确定</string>
+    <string name="cancel">取消</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+    <string name="about_app">关于软件</string>
+    <string name="install_app">安装软件</string>
+    <string name="install_finish">安装完成</string>
+    <string name="install_fail">安装失败:%s</string>
+    <string name="user_list">空间列表</string>
+    <string name="change_name">更改空间名称</string>
+    <string name="add_user">添加新空间</string>
+    <string name="delete_user">删除用户</string>
+    <string name="delete_success">删除成功</string>
+    <string name="delete_fail">删除失败</string>
+    <string name="app_setting">软件设置</string>
+    <string name="release_memory">释放内存</string>
+    <string name="release_memory_finish">释放内存成功</string>
+    <string name="delete_user_msg">是否删除该用户，并且卸载其安装的所有应用，数据将无法恢复！</string>
+    <string name="empty_empty">空空如也</string>
+    <string name="no_login">未登录</string>
+    <string name="click_to_login">点击登录</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="register_now">立即注册</string>
+    <string name="login_now">立即登录</string>
+    <string name="account">账号</string>
+    <string name="password">密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="email">邮箱</string>
+    <string name="no_null">%s不能为空</string>
+    <string name="email_format_fail">邮箱格式不正确</string>
+    <string name="password_6">密码长度至少为6位</string>
+    <string name="password_no_equals">密码不匹配</string>
+    <string name="open_fail">打开失败</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_fail">登录失败 %s</string>
+    <string name="register_fail">注册失败 %s</string>
+    <string name="logout">退出登录</string>
+    <string name="logout_msg">确定要退出当前账号吗？稍后您可以再次登录</string>
+
+    <string name="import_data">还原数据</string>
+    <string name="import_success">还原数据成功</string>
+    <string name="export_data">备份数据</string>
+    <string name="export_success">数据备份成功</string>
+    <string name="uninstall_app">卸载应用</string>
+    <string name="uninstall_app_hint">是否卸载%s，卸载后相关数据将被清除，数据将无法恢复！</string>
+    <string name="clear_data">清除数据</string>
+    <string name="clear_data_hint">是否清除%s的数据，数据将无法恢复！</string>
+    <string name="force_stop">强行停止</string>
+    <string name="force_stop_hint">是否强行停止运行%s</string>
+
+    <string name="select_num">已选中:%d</string>
+    <string name="multi_mode">多选模式</string>
+
+    <string name="need_install_app">要安装的软件</string>
+    <string name="install_to_user">为以下用户安装</string>
+
+    <string name="core_settings">内核设置</string>
+    <string name="general_settings">通用设置</string>
+    <string name="setting_force_io">存储路径隐藏</string>
+    <string name="setting_force_io_sub">开启后可避免虚拟应用检测存储路径</string>
+    <string name="setting_visible_package">访问外部App</string>
+    <string name="setting_visible_package_sub">开启后虚拟应用可获取本机已安装的APP</string>
+    <string name="setting_hide_vpn">VPN隐藏</string>
+    <string name="setting_hide_vpn_sub">开启后虚拟应用将无法检测是否开启VPN</string>
+    <string name="setting_hide_sim">SIM卡隐藏</string>
+    <string name="setting_hide_sim_sub">开启后虚拟应用无法检测是否存在SIM卡</string>
+    <string name="setting_disable_network">禁用网络</string>
+    <string name="setting_disable_network_sub">开启后应用将无法访问网络</string>
+    <string name="setting_hide_root">Root隐藏</string>
+    <string name="setting_hide_root_sub">开启后虚拟应用无法检测本机是否存在Root</string>
+    <string name="setting_disable_kill">防闪退</string>
+    <string name="setting_disable_kill_sub">开启后最大程度防止APP闪退</string>
+    <string name="setting_use_hook">增强版</string>
+    <string name="setting_use_hook_sub">使用增强版方案，开启后能兼容更多APP同时能一定的避免检测，如开启后无法打开APP，请关闭。</string>
+    <string name="setting_stable_pattern">稳定模式</string>
+    <string name="setting_stable_pattern_sub">打开后将减少非必要的函数处理，增加运行时的稳定性。</string>
+
+    <string name="fake_device_setting">设备伪装</string>
+    <string name="fake_device_enable">开启选项以进行设备信息伪装</string>
+    <string name="fake_device_board">主板</string>
+    <string name="fake_device_brand">品牌</string>
+    <string name="fake_device_manufacturer">制造商</string>
+    <string name="fake_device_product">产品名</string>
+    <string name="fake_device_model">手机型号</string>
+    <string name="fake_device_device">设备名</string>
+    <string name="fake_device_hardware">硬件</string>
+    <string name="fake_device_serial">序列号</string>
+    <string name="fake_device_androidId">androidID</string>
+    <string name="fake_device_id">ID</string>
+    <string name="fake_device_bootId">bootID</string>
+    <string name="fake_device_deviceId">设备ID</string>
+    <string name="fake_device_wifiMac">Mac地址</string>
+    <string name="random_device_config">随机信息</string>
+    <string name="origin_device_config">重置设备信息</string>
+
+    <string name="network_error">网络连接错误</string>
+    <string name="exit_app">退出软件</string>
+    <string name="feedback">问题反馈</string>
+    <string name="has_new_msg">有新的消息回复,是否前往意见反馈</string>
+    <string name="config_load_fail">软件配置加载失败</string>
+
+    <string name="check_update">检查更新</string>
+    <string name="version_is_newest">当前版本已是最新版本</string>
+    <string name="new_version">新版本 %s</string>
+    <string name="update_now">立即更新</string>
+    <string name="update_next">下次再说</string>
+    <string name="ignore_version">忽略此版本</string>
+    <string name="browser_download">浏览器下载</string>
+    <string name="re_download">重新下载</string>
+    <string name="back_download">后台下载</string>
+    <string name="install">安装</string>
+
+    <string name="space">空间</string>
+    <string name="permission_to_setting">权限申请被拒绝，请在设置中手动授予权限</string>
+    <string name="permission_denied">权限申请被拒绝</string>
+
+    <string name="upload_logcat">上传日志</string>
+    <string name="upload_msg">将在后台上传应用日志，是否继续</string>
+    <string name="upload_success">日志上传成功</string>
+    <string name="upload_error">日志上传失败，请检查网络！</string>
+    <string name="index_web">访问官网</string>
+    <string name="index_github">Github</string>
+    <string name="xposed_manager">Xposed管理</string>
+
+    <string name="developering">正在努力开发中</string>
+    <string name="no_suuport_abi">此版本暂不支持该架构的程序</string>
+    <string name="launch_fail">软件启动失败，请前往侧边栏菜单上传日志</string>
+    <string name="search">搜索</string>
+    <string name="local_file">本地文件</string>
+    <string name="fake_env">环境伪装</string>
+    <string name="app_language">当前空间语言</string>
+    <string name="app_timezone">当前空间时区</string>
+    <string name="app_country">当前空间区域</string>
+    <string name="same_with_system">跟随系统</string>
+
+    <string name="permission_setting">权限设置</string>
+    <string name="app_shortcut">创建快捷方式</string>
+    <string name="shortcut_name">快捷方式名称</string>
+    <string name="try_add_shortcut">已尝试添加到桌面</string>
+    <string name="add_shortcut_fail_msg">若添加失败，请前往系统设置，为%s打开"创建桌面快捷方式"的权限</string>
+    <string name="no_reminders">不再提醒</string>
+    <string name="cannot_create_shortcut">该桌面不支持创建快捷方式</string>
+</resources>

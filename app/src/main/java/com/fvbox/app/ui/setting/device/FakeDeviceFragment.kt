@@ -59,7 +59,7 @@ class FakeDeviceFragment : PreferenceFragment() {
 
     override fun getSettingTypeList(): Array<BaseBoxPreference> {
         return arrayOf(
-            TitleBoxPreference(R.string.fake_language),
+            TitleBoxPreference(R.string.app_language),
             SingleChoicePreference(
                 R.string.app_language,
                 languageMapping.getLanguageList(),
