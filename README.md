@@ -14,7 +14,7 @@ The open source release is only a Demo for testing, it doesn't contain core code
 
 For the **commercial** version of SpaceCore SDK (without source code), please contact **Email: [support@spacecore.dev](mailto:support@spacecore.dev)**
 
-Compare | Demo | commercial version
+Compare | lite | commercial version
 ---|---|---
 Compatibility | LOW | HIGH
 arm Version  | armeabi-v7a | armeabi-v7a / arm64-v8a
