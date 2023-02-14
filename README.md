@@ -7,7 +7,7 @@ SpaceCore is an Application Virtualization Engine on Android. This Engine suppor
 https://spacecore.dev/
 
 ## Compatibility
-Android 6.0 ～ 13.0 Also supports Huawei HarmonyOS
+Android 6.0 ～ 14.0 Preview Also supports Huawei HarmonyOS
 
 ## Demo
 The open source release is only a Demo for testing, it doesn't contain core codes. Download demo [Releases](https://github.com/FSpaceCore/SpaceCore/releases).
@@ -18,7 +18,7 @@ Compare | lite | commercial version
 ---|---|---
 Compatibility | LOW | HIGH
 arm Version  | armeabi-v7a | armeabi-v7a / arm64-v8a
-Android Version | Android 6.0 ~ 13.0 | Android 6.0 ~ 13.0 and all newer versions
+Android Version | Android 6.0 ~ 14.0 Preview | Android 6.0 ~ 14.0 Preview and all newer versions
 Native Hook | ✅ | ✅
 Java Hook | ✅ | ✅
 IO Hook | ✅ | ✅
