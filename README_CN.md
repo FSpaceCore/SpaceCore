@@ -7,7 +7,7 @@ SpaceCore是一个虚拟引擎内核，提供在Android上克隆和运行虚拟�
 https://spacecore.dev
 
 ## 兼容
-Android 6.0 ～ 13.0 及 鸿蒙
+Android 6.0 ～ 14.0预览版 及 鸿蒙
 
 ## SDK/Demo
 - 开源部分为演示产品，不包含核心代码，成品Demo前往 [Releases](https://github.com/FSpaceCore/SpaceCore/releases) 中下载
@@ -21,7 +21,7 @@ Android 6.0 ～ 13.0 及 鸿蒙
 ---|---|---
 兼容性 | 低 | 高
 架构  | armeabi-v7a | armeabi-v7a / arm64-v8a
-兼容版本 | Android 6.0 ~ 13.0 | Android 6.0 ~ 13.0以及未来发布的版本
+兼容版本 | Android 6.0 ~ 14.0预览版 | Android 6.0 ~ 14.0以及未来发布的版本
 Native Hook | ✅ | ✅
 Java Hook | ✅ | ✅
 IO Hook | ✅ | ✅
