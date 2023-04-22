@@ -9,12 +9,7 @@ import com.fvbox.app.ui.main.MainActivity
 import com.fvbox.util.showToast
 import com.permissionx.guolindev.PermissionX
 
-/**
- *
- *@description: welcome activity
- *@author: Jack
- *@create: 2022-05-28
- */
+
 
 class WelcomeActivity : BaseActivity() {
 
@@ -30,9 +25,9 @@ class WelcomeActivity : BaseActivity() {
                 )
             }.request { allGranted, _, _ ->
                 if (allGranted) {
-                    preload()
+                    go()
                 } else {
-                    showToast(getString(R.string.permission_denied))
+                    showToast(getString(R.string.permission_request_denied))
                     finish()
                 }
             }
@@ -40,13 +35,6 @@ class WelcomeActivity : BaseActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        preload()
-    }
-
-    /**
-     * 这里就没必要套viewModel了
-     */
-    private fun preload() {
         go()
     }
 

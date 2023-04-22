@@ -12,19 +12,23 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
+import com.fvbox.BuildConfig
 import com.fvbox.R
 import com.fvbox.app.base.BaseActivity
 import com.fvbox.app.config.BoxConfig
 import com.fvbox.app.contract.OpenZipDocument
+import com.fvbox.app.ui.info.AppInfoActivity
 import com.fvbox.app.ui.local.AppInstallReceiver
 import com.fvbox.app.ui.local.LocalAppActivity
 import com.fvbox.app.ui.setting.PreferenceActivity
 import com.fvbox.app.ui.tab.UserSelectActivity
 import com.fvbox.databinding.ActivityMainBinding
+import com.fvbox.databinding.ViewMainHeaderBinding
 import com.fvbox.util.property.viewBinding
 import com.fvbox.util.showSnackBar
 import com.gyf.immersionbar.ktx.immersionBar
 import com.permissionx.guolindev.PermissionX
+import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
@@ -33,8 +37,6 @@ class MainActivity : BaseActivity() {
     private val viewModel by viewModels<MainViewModel>()
 
     private var currentUserID = 0
-
-    private var mUpdateDialog: MaterialDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +48,6 @@ class MainActivity : BaseActivity() {
         AppInstallReceiver.register(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     override fun initImmersionBar() {
         immersionBar {
             transparentNavigationBar()
@@ -58,6 +56,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initDrawerLayout() {
         val actionBarDrawerToggle =
             ActionBarDrawerToggle(
@@ -68,13 +67,13 @@ class MainActivity : BaseActivity() {
                 R.string.close
             )
         actionBarDrawerToggle.syncState()
-
-        UserHeaderView(binding.navigationView.getHeaderView(0), this, viewModel)
-
         binding.navigationView.setNavigationItemSelectedListener {
             onMenuClick(it)
             return@setNavigationItemSelectedListener true
         }
+
+        val headerBinding = ViewMainHeaderBinding.bind(binding.navigationView.getHeaderView(0))
+        headerBinding.title.text = getString(R.string.app_name) + " V" + BuildConfig.VERSION_NAME
     }
 
     private fun initOtherView() {
@@ -105,6 +104,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun onMenuClick(item: MenuItem) {
+
         when (item.itemId) {
             R.id.main_user -> {
                 UserSelectActivity.start(this, currentUserID)
@@ -112,10 +112,6 @@ class MainActivity : BaseActivity() {
 
             R.id.main_name -> {
                 changeUserName()
-            }
-
-            R.id.main_setting -> {
-                PreferenceActivity.start(this, PreferenceActivity.GeneralSettings)
             }
 
             R.id.main_import_data -> {
@@ -127,17 +123,10 @@ class MainActivity : BaseActivity() {
                 showSnackBar(getString(R.string.release_memory_finish))
             }
 
-            R.id.main_fake_device -> {
-                PreferenceActivity.start(this, PreferenceActivity.DeviceSetting, currentUserID)
+            R.id.main_fake_device->{
+                PreferenceActivity.start(this,PreferenceActivity.DeviceSetting,currentUserID)
             }
 
-            R.id.main_index -> {
-                startBrowser("https://spacecore.dev/")
-            }
-
-            R.id.main_github -> {
-                startBrowser("https://github.com/FSpaceCore/SpaceCore")
-            }
 
             R.id.main_xposed -> {
                 showSnackBar(getString(R.string.developering))
@@ -145,6 +134,10 @@ class MainActivity : BaseActivity() {
 
             R.id.main_exit_app -> {
                 finish()
+            }
+
+            R.id.main_telegram -> {
+                startBrowser("https://t.me/dualmeta")
             }
         }
 
@@ -207,6 +200,12 @@ class MainActivity : BaseActivity() {
                     viewModel.changeUser(currentUserID(data))
                 }
             }
+
+            AppInfoActivity.REQUEST_CODE -> {
+                if (resultCode == AppInfoActivity.RESULT_UNINSTALL) {
+                    viewModel.changeUser(currentUserID)
+                }
+            }
         }
     }
 
@@ -228,13 +227,14 @@ class MainActivity : BaseActivity() {
                         showSnackBar(getString(R.string.open_fail))
                     }
                 } else {
-                    showSnackBar(getString(R.string.permission_denied))
+                    showSnackBar(getString(R.string.permission_request_denied))
                 }
             }
     }
 
     private val openDocument = registerForActivityResult(OpenZipDocument()) {
         if (it != null) {
+            viewModel.importData(currentUserID, it)
         }
     }
 

@@ -13,12 +13,7 @@ import com.fvbox.util.property.viewBinding
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.select.getSelectExtension
 
-/**
- *
- * @description:
- * @author: Jack
- * @create: 2022-07-07
- */
+
 class SearchActivity : BaseActivity() {
 
     private val binding by viewBinding(ActivitySettingSearchBinding::bind)
@@ -117,11 +112,11 @@ class SearchActivity : BaseActivity() {
             binding.searchView.showSearch()
             return true
         }
-        return onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_local_app, menu)
+        menuInflater.inflate(R.menu.menu_search, menu)
         return true
     }
 

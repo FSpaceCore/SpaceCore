@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'top.niunaijun.blackobfuscator'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -9,34 +9,74 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.fdemo"
+        applicationId "com.fvbox"
         minSdkVersion 23
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 34
+        versionName "3.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        flavorDimensions "D32"
+        flavorDimensions "FV32"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
     }
 
     productFlavors {
         D32 {
-            applicationId "dev.spacecore32"
+            applicationId "space.dualmeta32"
             ndk {
                 abiFilters "armeabi-v7a"
             }
-            resValue "string", "app_name", "SCoreLite32"
-            manifestPlaceholders = [APP_ICON      : "@mipmap/ic_launcher",
+//            resValue "string", "app_name", "多元空间32"
+            manifestPlaceholders = [appName      : "@string/app_name_32",
+                                    APP_ICON      : "@mipmap/ic_launcher",
+                                    APP_ROUND_ICON: "@mipmap/ic_launcher_round"]
+        }
+
+        D64 {
+            applicationId "space.dualmeta64"
+            ndk {
+                abiFilters "arm64-v8a"
+            }
+//            resValue "string", "app_name", "多元空间"
+            manifestPlaceholders = [appName      : "@string/app_name",
+                                    APP_ICON      : "@mipmap/ic_launcher",
                                     APP_ROUND_ICON: "@mipmap/ic_launcher_round"]
         }
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'meta'
+            keyPassword 'metameta'
+            storeFile file('../meta.jks')
+            storePassword 'metameta'
+        }
+
+        debug {
+            keyAlias 'meta'
+            keyPassword 'metameta'
+            storeFile file('../meta.jks')
+            storePassword 'metameta'
+        }
+    }
+
+
     buildTypes {
         debug {
+            signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -55,7 +95,19 @@ android {
     }
 }
 
+boolean isReleaseBuildType() {
+    for(String s : gradle.startParameter.taskNames) {
+        s = s.toLowerCase()
+        if (s.contains("assembled")) {
+            return true
+        }
+    }
+    return false
+}
+
+
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
@@ -72,6 +124,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
     implementation "com.afollestad.material-dialogs:core:$materialDialogVersion"
     implementation "com.afollestad.material-dialogs:bottomsheets:$materialDialogVersion"
@@ -82,17 +136,22 @@ dependencies {
     implementation "com.mikepenz:fastadapter-extensions-utils:${fastAdapterVersion}"
     implementation "com.mikepenz:fastadapter-extensions-diff:${fastAdapterVersion}"
 
+    implementation "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitAdapterVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitConverterVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttp3"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3"
+
     implementation "com.geyifeng.immersionbar:immersionbar:$rootProject.ext.immersionbarVersion"
     implementation "com.geyifeng.immersionbar:immersionbar-ktx:$rootProject.ext.immersionbarVersion"
 
     implementation "com.tencent:mmkv-static:$rootProject.ext.mmkv"
     implementation 'com.guolindev.permissionx:permissionx:1.6.4'
     implementation 'com.github.nukc:StateView:v3.0.2'
-    implementation "com.airbnb.android:lottie:3.4.0"
+    implementation "com.airbnb.android:lottie:6.0.0"
     implementation "io.coil-kt:coil:2.1.0"
     implementation 'com.github.Ferfalk:SimpleSearchView:0.2.0'
     implementation 'com.github.Othershe:CornerLabelView:1.0.0'
 
     implementation 'com.elvishew:xlog:1.10.1'
-    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
 }

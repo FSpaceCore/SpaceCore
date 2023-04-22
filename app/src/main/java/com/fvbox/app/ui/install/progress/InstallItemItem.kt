@@ -8,12 +8,7 @@ import com.fvbox.data.bean.box.BoxInstallBean
 import com.fvbox.databinding.ItemInstallProgressItemBinding
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 
-/**
- *
- * @Description: 具体到用户的安装进度
- * @Author: Jack
- * @CreateDate: 2022/5/28 1:01
- */
+
 class InstallItemItem : AbstractBindingItem<ItemInstallProgressItemBinding>() {
 
     override val type: Int

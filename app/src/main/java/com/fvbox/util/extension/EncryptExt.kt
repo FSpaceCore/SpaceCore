@@ -1,13 +1,8 @@
-package com.fvbox.util
+package com.fvbox.util.extension
 
 import java.security.MessageDigest
 
-/**
- *
- *@description:
- *@author: Jack
- *@create: 2022-06-11
- */
+import com.fvbox.util.Log
 
 fun String.md5(): String {
     return try {

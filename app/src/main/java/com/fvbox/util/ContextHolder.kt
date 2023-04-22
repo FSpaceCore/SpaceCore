@@ -3,12 +3,7 @@ package com.fvbox.util
 import android.annotation.SuppressLint
 import android.content.Context
 
-/**
- *
- * @Description: context
- * @Author: Jack
- * @CreateDate: 2022/5/15 14:56
- */
+import com.fvbox.util.Log
 @SuppressLint("StaticFieldLeak")
 object ContextHolder {
 

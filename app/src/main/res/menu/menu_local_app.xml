@@ -5,6 +5,11 @@
     tools:ignore="MissingDefaultResource">
 
     <item
+        android:id="@+id/local_file"
+        android:title="@string/local_file"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/local_search"
         android:icon="@drawable/ic_search_light"
         android:title="@string/search"

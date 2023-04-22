@@ -6,14 +6,10 @@ import android.content.Intent
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContract
 import com.fvbox.data.bean.box.BoxAppBean
+import com.fvbox.util.Log
 import com.fvbox.util.extension.nowStr
 
-/**
- *
- * @description: create zip for SAF
- * @author: Jack
- * @create: 2022-06-12
- */
+
 class SaveZipDocument : ActivityResultContract<BoxAppBean, SaveZipDocument.SaveZipBean>() {
 
     var userID = 0
@@ -28,7 +24,9 @@ class SaveZipDocument : ActivityResultContract<BoxAppBean, SaveZipDocument.SaveZ
             .putExtra(Intent.EXTRA_TITLE, title)
     }
 
-    final override fun parseResult(resultCode: Int, intent: Intent?): SaveZipBean {
+    override fun parseResult(resultCode: Int, intent: Intent?): SaveZipBean {
+        Log
+        Log.e(intent)
         val uri = intent.takeIf { resultCode == Activity.RESULT_OK }?.data
         return SaveZipBean(uri, userID, pkg)
     }

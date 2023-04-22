@@ -17,12 +17,7 @@ import com.fvbox.app.ui.main.ShortcutActivity
 import com.fvbox.data.bean.box.BoxAppBean
 import com.fvbox.util.extension.getString
 
-/**
- *
- * @description: 快捷方式工具
- * @author: Jack
- * @create: 2022-06-30
- */
+import com.fvbox.util.Log
 object ShortcutUtil {
 
     /**

@@ -7,12 +7,7 @@ import com.fvbox.data.bean.local.LocalAppBean
 import com.fvbox.databinding.ItemInstallProgressHeaderBinding
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 
-/**
- *
- * @Description: header
- * @Author: Jack
- * @CreateDate: 2022/5/28 1:00
- */
+
 class InstallHeaderItem : AbstractBindingItem<ItemInstallProgressHeaderBinding>() {
 
     override val type: Int

@@ -7,12 +7,7 @@ import com.fvbox.data.bean.box.BoxAppBean
 import com.fvbox.databinding.ItemBoxAppsBinding
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 
-/**
- *
- * @Description: item
- * @Author: Jack
- * @CreateDate: 2022/5/17 23:21
- */
+
 
 class BoxAppsItem : AbstractBindingItem<ItemBoxAppsBinding>() {
 

@@ -7,12 +7,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import com.fvbox.app.ui.setting.SingleChoicePreference
 import com.fvbox.app.ui.setting.search.SearchActivity
 
-/**
- *
- * @description: 启动列表搜索
- * @author: Jack
- * @create: 2022-07-07
- */
+
 class LaunchSearchActivity : ActivityResultContract<SingleChoicePreference, Pair<Int, String>?>() {
 
     private var choicePreference: SingleChoicePreference? = null

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:background="?attr/background"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <ImageView
+                android:id="@+id/ivAppLogo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tvAppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="12dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivAppLogo" />
+
+        <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginVertical="16dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/tvAppName" />
+
+        <Button
+                android:id="@+id/btnClean"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:drawableTop="@drawable/ic_clean"
+                android:drawableTint="?android:attr/colorPrimary"
+                android:paddingVertical="12dp"
+                android:text="@string/clear_data"
+                app:layout_constraintEnd_toStartOf="@id/btnUninstall"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line1"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+                android:id="@+id/btnUninstall"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:drawableTop="@drawable/ic_delete"
+                android:drawableTint="?android:attr/colorPrimary"
+                android:paddingVertical="12dp"
+                android:text="@string/uninstall_app"
+                app:layout_constraintEnd_toStartOf="@id/btnForce"
+                app:layout_constraintStart_toEndOf="@id/btnClean"
+                app:layout_constraintTop_toBottomOf="@id/line1" />
+
+        <Button
+                android:id="@+id/btnForce"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:drawableTop="@drawable/ic_stop"
+                android:drawableTint="?android:attr/colorPrimary"
+                android:paddingVertical="12dp"
+                android:text="@string/force_stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnUninstall"
+                app:layout_constraintTop_toBottomOf="@id/line1" />
+
+        <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/btnClean" />
+
+        <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/preferenceFragment"
+                android:name="com.fvbox.app.ui.info.AppInfoPreferenceFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

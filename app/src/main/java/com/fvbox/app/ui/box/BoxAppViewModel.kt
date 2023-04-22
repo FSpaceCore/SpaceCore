@@ -1,5 +1,6 @@
 package com.fvbox.app.ui.box
 
+import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,24 +8,25 @@ import com.fvbox.R
 import com.fvbox.app.base.BaseViewModel
 import com.fvbox.data.BackRepository
 import com.fvbox.data.BoxRepository
+import com.fvbox.data.PermissionRepository
 import com.fvbox.data.bean.box.BoxAppBean
 import com.fvbox.data.state.BoxActionState
 import com.fvbox.data.state.BoxAppState
+import com.fvbox.data.state.BoxPermissionState
+import com.fvbox.data.state.BoxRequestPermissionState
 import com.fvbox.util.extension.getString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-/**
- *
- * @Description: box apps viewModel
- * @Author: Jack
- * @CreateDate: 2022/5/18 21:45
- */
+
 class BoxAppViewModel : BaseViewModel() {
 
 
     private val mBoxAppLiveData = MutableLiveData<BoxAppState>()
     val boxAppState: LiveData<BoxAppState> = mBoxAppLiveData
+
+    private val mPermissionListLiveData = MutableLiveData<BoxRequestPermissionState>()
+    val appPermissionState: LiveData<BoxRequestPermissionState> = mPermissionListLiveData
 
     /**
      * 首次加载列表，需要有加载事件
@@ -37,7 +39,7 @@ class BoxAppViewModel : BaseViewModel() {
     /**
      * 安装应用，卸载应用后刷新列表，不需要加载动画
      */
-    fun freshBoxAppList(userID: Int) {
+    private fun freshBoxAppList(userID: Int) {
         launchIO {
             val list = BoxRepository.getBoxAppList(userID)
 
@@ -47,7 +49,6 @@ class BoxAppViewModel : BaseViewModel() {
                 mBoxAppLiveData.postValue(BoxAppState.Success(list))
             }
         }
-
     }
 
     fun launchApp(bean: BoxAppBean) {
@@ -58,6 +59,7 @@ class BoxAppViewModel : BaseViewModel() {
             }.onSuccess {
                 mBoxActionState.postValue(BoxActionState.Success())
             }.onFailure {
+                it.printStackTrace()
                 mBoxActionState.postValue(BoxActionState.Fail(getString(R.string.launch_fail)))
             }
         }
@@ -108,4 +110,27 @@ class BoxAppViewModel : BaseViewModel() {
         }
     }
 
+
+    fun getAllowPermission(bean: BoxAppBean) {
+        mPermissionListLiveData.postValue(BoxRequestPermissionState.Loading)
+        launch {
+            val pair = withContext(Dispatchers.IO) {
+                PermissionRepository.getBoxAppPermissionList(bean.userID, bean.pkg)
+            }
+
+            if (pair != null) {
+                val list = withContext(Dispatchers.IO) {
+                    pair.second.filter { it.status == PackageManager.PERMISSION_GRANTED }
+                        .map { it.permission }
+                }
+                if (list.isEmpty()) {
+                    mPermissionListLiveData.postValue(BoxRequestPermissionState.Empty(bean))
+                } else {
+                    mPermissionListLiveData.postValue(BoxRequestPermissionState.Success(bean, list))
+                }
+            } else {
+                mPermissionListLiveData.postValue(BoxRequestPermissionState.Empty(bean))
+            }
+        }
+    }
 }

@@ -2,13 +2,13 @@ package com.fvbox
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
+import com.fvbox.app.config.BoxConfigLoader
 import com.fvbox.data.BoxRepository
 import com.fvbox.lib.FCore
+import com.fvbox.lib.abs.ApplicationCallback
 import com.fvbox.util.ContextHolder
 
-/**
- * Created by FvBox on 2022/4/26.
- */
 class BoxApplication : Application() {
     companion object {
         private const val TAG = "BoxApplication"
@@ -16,21 +16,29 @@ class BoxApplication : Application() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
-        FCore.get().init(this)
-        if (FCore.isClient()) {
-            return
-        }
-
+        FCore.get().init(this, true)
         ContextHolder.init(base)
-        BoxRepository.initLocalAppList()
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        if (FCore.isClient()) {
-            return
+        if (FCore.isHost()) {
+            BoxRepository.initLocalAppList()
+        } else {
+            BoxConfigLoader.loadRule()
         }
+        FCore.get().applicationCallback = object : ApplicationCallback {
+            override fun beforeCreateApplication(packageName: String, processName: String, userId: Int) {
+                Log.d(TAG, "beforeCreateApplication: packageName=$packageName, processName=$processName, userId=$userId")
+            }
 
-        // do...
+            override fun afterCreatedApplication(
+                application: Application,
+                packageName: String,
+                processName: String,
+                userId: Int
+            ) {
+                Log.d(
+                    TAG,
+                    "afterCreatedApplication: application=$application, packageName=$packageName, processName=$processName, userId=$userId"
+                )
+            }
+        }
     }
 }

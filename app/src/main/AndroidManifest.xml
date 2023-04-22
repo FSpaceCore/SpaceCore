@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.fvbox">
 
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
@@ -8,11 +9,12 @@
         android:name=".BoxApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="${appName}"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FvBox">
+        android:theme="@style/Theme.FvBox"
+        tools:replace="android:label">
         <activity
             android:name=".app.ui.welcome.WelcomeActivity"
             android:exported="true"
@@ -38,6 +40,13 @@
         <activity android:name=".app.ui.install.BoxInstallActivity" />
         <activity android:name=".app.ui.setting.PreferenceActivity" />
         <activity android:name=".app.ui.setting.search.SearchActivity" />
+        <activity android:name=".app.ui.info.AppInfoActivity" />
+
+        <activity
+            android:name=".app.ui.main.ShortcutActivity"
+            android:excludeFromRecents="true"
+            android:exported="true" />
+        <activity android:name=".app.ui.web.WebActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

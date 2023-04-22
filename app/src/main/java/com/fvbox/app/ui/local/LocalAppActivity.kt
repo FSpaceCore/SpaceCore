@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.fvbox.R
 import com.fvbox.app.base.BaseActivity
+import com.fvbox.app.contract.OpenApkDocument
 import com.fvbox.app.ui.install.BoxInstallActivity
 import com.fvbox.app.ui.install.progress.InstallProgressFragment
 import com.fvbox.data.state.LocalAppState
@@ -22,12 +23,7 @@ import com.mikepenz.fastadapter.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.select.getSelectExtension
 import java.util.concurrent.atomic.AtomicInteger
 
-/**
- *
- * @Description: local app list activity
- * @Author: Jack
- * @CreateDate: 2022/5/15 23:32
- */
+
 class LocalAppActivity : BaseActivity() {
 
     private val binding by viewBinding(ActivityLocalAppsBinding::bind)
@@ -53,12 +49,10 @@ class LocalAppActivity : BaseActivity() {
     }
 
     private fun initRecyclerView() {
+
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-
         binding.recyclerView.itemAnimator = DefaultItemAnimator()
-
         binding.recyclerView.adapter = fastAdapter
-
         fastAdapter.itemFilter.filterPredicate = { item: LocalAppsItem, constraint: CharSequence? ->
             val appBean = item.appBean
             if (appBean == null) {
@@ -197,6 +191,13 @@ class LocalAppActivity : BaseActivity() {
         binding.fab.setImageResource(R.drawable.ic_menu_light)
     }
 
+
+    private val openDocument = registerForActivityResult(OpenApkDocument()) {
+        if (it != null) {
+            BoxInstallActivity.start(this,currentUserID(),it)
+        }
+    }
+
     override fun onPause() {
         super.onPause()
         binding.searchView.closeSearch()
@@ -222,8 +223,10 @@ class LocalAppActivity : BaseActivity() {
         if (item.itemId == R.id.local_search) {
             binding.searchView.showSearch()
             return true
+        } else if (item.itemId == R.id.local_file) {
+            openDocument.launch(Unit)
         }
-        return onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

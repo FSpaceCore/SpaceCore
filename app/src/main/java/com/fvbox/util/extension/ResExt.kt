@@ -4,12 +4,7 @@ import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.fvbox.util.ContextHolder
 
-/**
- *
- * @Description: resources ext
- * @Author: Jack
- * @CreateDate: 2022/5/17 21:56
- */
+import com.fvbox.util.Log
 
 fun getString(id: Int, vararg args: Any): String {
     if (args.isEmpty()) {
@@ -30,6 +25,6 @@ fun getDrawable(id: Int): Drawable {
 
 val Int.dp: Float
     get() {
-        val scale = ContextHolder.get().resources.displayMetrics.density;
+        val scale = ContextHolder.get().resources.displayMetrics.density
         return (this * scale + 0.5f)
     }

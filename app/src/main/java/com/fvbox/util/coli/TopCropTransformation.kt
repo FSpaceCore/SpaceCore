@@ -7,12 +7,7 @@ import coil.size.pxOrElse
 import coil.transform.Transformation
 
 
-/**
- *
- * @description: top crop
- * @author: Jack
- * @create: 2022-07-05
- */
+import com.fvbox.util.Log
 class TopCropTransformation : Transformation {
     override val cacheKey: String
         get() = javaClass.name

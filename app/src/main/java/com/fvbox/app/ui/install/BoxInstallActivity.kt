@@ -1,6 +1,7 @@
 package com.fvbox.app.ui.install
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.fvbox.R
@@ -8,12 +9,7 @@ import com.fvbox.app.base.BaseActivity
 import com.fvbox.databinding.ActivityInstallBinding
 import com.fvbox.util.property.viewBinding
 
-/**
- *
- * @Description: 安装界面
- * @Author: Jack
- * @CreateDate: 2022/5/23 21:43
- */
+
 class BoxInstallActivity : BaseActivity() {
 
     private val binding by viewBinding(ActivityInstallBinding::bind)
@@ -30,8 +26,14 @@ class BoxInstallActivity : BaseActivity() {
     }
 
     private fun initData() {
-        val list = intent.getStringArrayListExtra(PACKAGE_LIST)
-        viewModel.loadData(list)
+        val uri = intent.getParcelableExtra<Uri>(APK_URI)
+        if (uri != null) {
+            viewModel.loadData(uri)
+        } else {
+            val list = intent.getStringArrayListExtra(PACKAGE_LIST)
+            viewModel.loadData(list)
+        }
+
     }
 
     override fun onBackPressed() {
@@ -45,10 +47,19 @@ class BoxInstallActivity : BaseActivity() {
 
         private const val PACKAGE_LIST = "pkgList"
 
+        private const val APK_URI = "apkUri"
+
         fun start(activity: BaseActivity, currentUser: Int, pkgList: ArrayList<String>) {
             val intent = Intent(activity, BoxInstallActivity::class.java)
             intent.putExtra(INTENT_USERID, currentUser)
             intent.putStringArrayListExtra(PACKAGE_LIST, pkgList)
+            activity.startActivityForResult(intent, REQUEST_CODE)
+        }
+
+        fun start(activity: BaseActivity, currentUser: Int, uri: Uri) {
+            val intent = Intent(activity, BoxInstallActivity::class.java)
+            intent.putExtra(INTENT_USERID, currentUser)
+            intent.putExtra(APK_URI, uri)
             activity.startActivityForResult(intent, REQUEST_CODE)
         }
     }

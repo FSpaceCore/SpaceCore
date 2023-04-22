@@ -7,12 +7,7 @@ import com.fvbox.data.bean.local.LocalAppBean
 import com.fvbox.databinding.ItemInstallAppBinding
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 
-/**
- *
- * @Description: 安装界面的app显示
- * @Author: Jack
- * @CreateDate: 2022/5/23 23:09
- */
+
 class InstallAppItem : AbstractBindingItem<ItemInstallAppBinding>() {
 
     var appBean: LocalAppBean? = null

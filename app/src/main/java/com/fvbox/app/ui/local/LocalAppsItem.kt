@@ -9,12 +9,7 @@ import com.fvbox.util.ProcessUtil
 import com.fvbox.util.extension.isShow
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 
-/**
- *
- * @Description: item
- * @Author: Jack
- * @CreateDate: 2022/5/16 23:07
- */
+
 class LocalAppsItem : AbstractBindingItem<ItemLocalAppsBinding>() {
 
 

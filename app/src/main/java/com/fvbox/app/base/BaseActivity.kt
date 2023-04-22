@@ -12,12 +12,7 @@ import com.fvbox.data.state.BoxActionState
 import com.fvbox.util.showSnackBar
 import com.gyf.immersionbar.ktx.immersionBar
 
-/**
- *
- * @Description: base activity
- * @Author: Jack
- * @CreateDate: 2022/5/14 20:53
- */
+
 abstract class BaseActivity : AppCompatActivity() {
 
 

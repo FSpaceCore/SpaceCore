@@ -6,12 +6,7 @@ import com.fvbox.R
 import com.fvbox.databinding.ItemSettingSearchBinding
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 
-/**
- *
- * @description:
- * @author: Jack
- * @create: 2022-07-07
- */
+
 class SettingSearchItem : AbstractBindingItem<ItemSettingSearchBinding>() {
     override val type: Int
         get() = R.id.radio

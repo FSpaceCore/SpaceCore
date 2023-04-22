@@ -2,19 +2,14 @@ package com.fvbox.app.ui.setting
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.fvbox.R
 import com.fvbox.app.base.BaseActivity
 import com.fvbox.app.config.BoxConfig
 import com.fvbox.app.ui.setting.device.FakeDeviceFragment
-import com.fvbox.app.ui.setting.setting.SettingFragment
 
-/**
- *
- * @Description:
- * @Author: Jack
- * @CreateDate: 2022/5/31 22:41
- */
+
 class PreferenceActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,15 +21,12 @@ class PreferenceActivity : BaseActivity() {
     }
 
     private fun initFragment() {
-        val fragment = when (intent.getIntExtra(PREFERENCE_TYPE, GeneralSettings)) {
-            GeneralSettings -> {
-                SettingFragment()
-            }
+        val fragment = when (intent.getIntExtra(PREFERENCE_TYPE, DeviceSetting)) {
             DeviceSetting -> {
                 setToolbarTitle(R.string.fake_device_setting)
                 FakeDeviceFragment.create(currentUserID())
             }
-            else -> SettingFragment()
+            else -> Fragment()
         }
 
         supportFragmentManager.commit {

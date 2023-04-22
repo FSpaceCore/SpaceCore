@@ -2,12 +2,7 @@ package com.fvbox.data.state
 
 import com.fvbox.data.bean.local.LocalAppBean
 
-/**
- *
- * @Description:
- * @Author: Jack
- * @CreateDate: 2022/5/16 22:55
- */
+import com.fvbox.util.Log
 sealed class LocalAppState {
 
     object Loading : LocalAppState()

@@ -10,12 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/**
- *
- * @description: 快捷方式activity
- * @author: Jack
- * @create: 2022-06-30
- */
+import com.fvbox.util.Log
 class ShortcutActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

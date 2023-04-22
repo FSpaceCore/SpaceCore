@@ -3,12 +3,7 @@ package com.fvbox.util.extension
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- *
- * @description:
- * @author: Jack
- * @create: 2022-06-12
- */
+import com.fvbox.util.Log
 
 fun Date.str(): String {
     val simpleFormatter = SimpleDateFormat("yyyy-MM-dd-hh:mm:ss", Locale.getDefault())

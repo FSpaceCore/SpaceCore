@@ -12,8 +12,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include
-            android:id="@+id/toolbar_layout"
-            layout="@layout/view_toolbar"
+                layout="@layout/view_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent" />

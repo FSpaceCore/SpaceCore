@@ -2,26 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/main_setting"
-        android:icon="@drawable/ic_setting_light"
-        android:title="@string/app_setting"
-        app:showAsAction="never" />
 
     <item
-        android:id="@+id/main_index"
-        android:icon="@drawable/ic_network_light"
-        android:title="@string/index_web" />
-
-    <item
-        android:id="@+id/main_github"
-        android:icon="@drawable/ic_network_light"
-        android:title="@string/index_github" />
-
+        android:id="@+id/main_telegram"
+        android:icon="@drawable/ic_feedback"
+        android:title="@string/telegram" />
 
     <item
         android:id="@+id/main_exit_app"
-        android:icon="@drawable/ic_exit_light"
+        android:icon="@drawable/ic_exit"
         android:title="@string/exit_app"
         app:showAsAction="never" />
 </menu>

@@ -3,14 +3,11 @@
     <color name="half_black">#00000000</color>
     <color name="colorOnPrimary">#ffffff</color>
     <color name="colorPrimary">#4F7A5E</color>
-    <color name="colorPrimaryDark">#405348</color>
     <color name="colorPrimaryLight">#93c7a1</color>
     <color name="colorAccent">#736D8F</color>
     <color name="colorBackground">#fafafa</color>
-    <color name="colorContainer">#ffffff</color>
 
     <color name="textColorPrimary">#DE000000</color>
     <color name="textEditColor">#DE000000</color>
     <color name="textColorSecondary">#8A000000</color>
-    <color name="textColorThird">#61000000</color>
 </resources>

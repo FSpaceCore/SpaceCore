@@ -2,12 +2,7 @@ package com.fvbox.util
 
 import com.fvbox.lib.FCore
 
-/**
- *
- * @description: 进程相关工具
- * @author: Jack
- * @create: 2022-07-06
- */
+import com.fvbox.util.Log
 object ProcessUtil {
 
     fun currentBit(): Int {

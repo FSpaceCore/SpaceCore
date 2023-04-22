@@ -8,12 +8,7 @@ import com.fvbox.data.state.BoxActionState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/**
- *
- * @Description: base viewModel
- * @Author: Jack
- * @CreateDate: 2022/5/14 20:54
- */
+
 open class BaseViewModel : ViewModel() {
 
     protected val mBoxActionState = MutableLiveData<BoxActionState>()

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/permission_grant"
+        android:title="@string/permission_grant" />
+
+    <item
+        android:title="@string/permission_deny"
+        android:id="@+id/permission_deny" />
+
+    <item
+        android:title="@string/permission_host_permission"
+        android:id="@+id/permission_host" />
+
+</menu>

@@ -5,16 +5,18 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.fvbox.R
 import com.fvbox.app.base.BaseActivity
-import com.fvbox.app.ui.setting.*
+import com.fvbox.app.ui.setting.BaseBoxPreference
+import com.fvbox.app.ui.setting.ClickPreference
+import com.fvbox.app.ui.setting.EditBoxPreference
+import com.fvbox.app.ui.setting.PreferenceActivity
+import com.fvbox.app.ui.setting.PreferenceFragment
+import com.fvbox.app.ui.setting.SingleChoicePreference
+import com.fvbox.app.ui.setting.SwitchBoxPreference
+import com.fvbox.app.ui.setting.TitleBoxPreference
 import com.fvbox.data.state.BoxActionState
 import com.fvbox.util.showSnackBar
 
-/**
- *
- * @Description: 设备信息修改
- * @Author: Jack
- * @CreateDate: 2022/6/1 22:46
- */
+
 class FakeDeviceFragment : PreferenceFragment() {
 
     private lateinit var deviceMapping: DeviceMapping
@@ -59,7 +61,7 @@ class FakeDeviceFragment : PreferenceFragment() {
 
     override fun getSettingTypeList(): Array<BaseBoxPreference> {
         return arrayOf(
-            TitleBoxPreference(R.string.app_language),
+            TitleBoxPreference(R.string.fake_env),
             SingleChoicePreference(
                 R.string.app_language,
                 languageMapping.getLanguageList(),
@@ -81,8 +83,7 @@ class FakeDeviceFragment : PreferenceFragment() {
                 R.string.fake_device_enable,
                 deviceMapping::enable
             ),
-            ClickPreference(R.string.origin_device_config, this::originDeviceInfo),
-            ClickPreference(R.string.random_device_config, this::randomDeviceInfo),
+            ClickPreference(R.string.origin_device_config,0, this::originDeviceInfo),
             EditBoxPreference(R.string.fake_device_device, deviceMapping::device),
             EditBoxPreference(R.string.fake_device_board, deviceMapping::board),
             EditBoxPreference(R.string.fake_device_brand, deviceMapping::brand),
@@ -99,11 +100,8 @@ class FakeDeviceFragment : PreferenceFragment() {
         )
     }
 
-    private fun randomDeviceInfo() {
-        viewModel.randomDevice(userID)
-    }
-
     private fun originDeviceInfo() {
+        attachActivity().showLoadingDialog()
         viewModel.originDevice(userID)
     }
 

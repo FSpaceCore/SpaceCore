@@ -1,14 +1,14 @@
 package com.fvbox.app.base
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.commit
+import com.fvbox.R
+import com.fvbox.app.ui.info.permission.AppPermissionFragment
 import com.fvbox.app.widget.LoadingDialog
 
-/**
- *
- * @Description:
- * @Author: Jack
- * @CreateDate: 2022/5/18 21:08
- */
+
 abstract class BaseFragment(layoutID: Int) : Fragment(layoutID) {
 
     private val mLoadingDialog: LoadingDialog by lazy {
@@ -37,7 +37,8 @@ abstract class BaseFragment(layoutID: Int) : Fragment(layoutID) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T> attachActivity(): T {
+    open fun <T> attachActivity(): T {
         return requireActivity() as T
     }
+
 }

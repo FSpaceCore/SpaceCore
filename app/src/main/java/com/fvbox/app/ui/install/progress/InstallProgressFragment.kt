@@ -22,6 +22,7 @@ import com.fvbox.util.showToast
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.GenericItem
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
+import com.mikepenz.fastadapter.adapters.ModelAdapter
 import com.mikepenz.fastadapter.diff.DiffCallback
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import com.mikepenz.fastadapter.listeners.ClickEventHook
@@ -30,12 +31,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/**
- *
- * @Description: 安装进度
- * @Author: Jack
- * @CreateDate: 2022/5/26 0:26
- */
+
 class InstallProgressFragment : BaseFragment(R.layout.fragment_install_progress) {
 
     private val binding by viewBinding(FragmentInstallProgressBinding::bind)
@@ -72,7 +68,7 @@ class InstallProgressFragment : BaseFragment(R.layout.fragment_install_progress)
                 item: InstallItemItem
             ) {
                 if (item.getItemState() == 3) {
-                    showToast(item.getInstallBean()?.msg ?: "")
+                    showSnackBar(item.getInstallBean()?.msg ?: "")
                 }
             }
 

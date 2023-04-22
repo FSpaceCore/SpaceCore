@@ -2,6 +2,7 @@ package com.fvbox.app.ui.box
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -9,30 +10,27 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.customListAdapter
 import com.fvbox.R
 import com.fvbox.app.base.BaseFragment
-import com.fvbox.app.contract.SaveZipDocument
 import com.fvbox.app.ui.main.MainViewModel
+import com.fvbox.app.ui.info.AppInfoActivity
 import com.fvbox.data.bean.box.BoxAppBean
 import com.fvbox.data.state.BoxActionState
 import com.fvbox.data.state.BoxAppState
+import com.fvbox.data.state.BoxRequestPermissionState
 import com.fvbox.databinding.FragmentBoxAppsBinding
 import com.fvbox.util.CaptureUtil
-import com.fvbox.util.ShortcutUtil
+import com.fvbox.util.extension.showTwoStepDialog
 import com.fvbox.util.property.viewBinding
 import com.fvbox.util.showSnackBar
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
+import com.permissionx.guolindev.PermissionX
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 
-/**
- *
- * @Description: box 内部安装的app
- * @Author: Jack
- * @CreateDate: 2022/5/18 21:05
- */
+
 
 class BoxAppFragment : BaseFragment(R.layout.fragment_box_apps) {
 
@@ -43,8 +41,6 @@ class BoxAppFragment : BaseFragment(R.layout.fragment_box_apps) {
     private val activityViewModel by activityViewModels<MainViewModel>()
 
     private val fastAdapter by lazy { FastItemAdapter<BoxAppsItem>() }
-
-    private val menuAdapter by lazy { initMenuAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,29 +62,17 @@ class BoxAppFragment : BaseFragment(R.layout.fragment_box_apps) {
         binding.recyclerView.adapter = fastAdapter
         fastAdapter.onClickListener = { _, _, item, _ ->
             item.appBean?.let {
-                viewModel.launchApp(it)
+                viewModel.getAllowPermission(it)
             }
             true
         }
 
-        fastAdapter.onLongClickListener = { _, _, item, _ ->
+        fastAdapter.onLongClickListener = { view, _, item, _ ->
             item.appBean?.let {
-                showLongClickDialog(it)
+                AppInfoActivity.start(baseActivity(), it.userID, it.pkg)
             }
             true
         }
-    }
-
-    /**
-     * 初始化长按菜单的menu
-     * 懒加载
-     * @return FastItemAdapter<BoxAppMenuItem>
-     */
-    private fun initMenuAdapter(): FastItemAdapter<BoxAppMenuItem> {
-        val mAdapter = FastItemAdapter<BoxAppMenuItem>()
-        mAdapter.add(BoxMenuData.getMenuList())
-        return mAdapter
-
     }
 
     private fun observeData() {
@@ -140,70 +124,59 @@ class BoxAppFragment : BaseFragment(R.layout.fragment_box_apps) {
             }
         }
 
-    }
-
-    private fun showLongClickDialog(appBean: BoxAppBean) {
-        MaterialDialog(requireContext()).show {
-            title(text = appBean.name)
-            icon(drawable = appBean.icon)
-            customListAdapter(menuAdapter)
-
-            menuAdapter.onClickListener = { _, _, item, _ ->
-                when (item.textRes) {
-                    R.string.uninstall_app -> {
-                        showTwoStepDialog(
-                            R.string.uninstall_app,
-                            R.string.uninstall_app_hint,
-                            appBean,
-                            viewModel::unInstallApp
-                        )
-                    }
-                    R.string.force_stop -> {
-                        showTwoStepDialog(
-                            R.string.force_stop,
-                            R.string.force_stop_hint,
-                            appBean,
-                            viewModel::forceStop
-                        )
-                    }
-                    R.string.clear_data -> {
-                        showTwoStepDialog(
-                            R.string.clear_data,
-                            R.string.clear_data_hint,
-                            appBean,
-                            viewModel::clearData
-                        )
-                    }
-                    R.string.export_data -> {
-                    }
-
-                    R.string.app_shortcut -> {
-                        runCatching {
-                            ShortcutUtil.createShortcut(requireContext(), appBean)
-                        }
-                    }
+        viewModel.appPermissionState.observe(viewLifecycleOwner) {
+            when (it) {
+                is BoxRequestPermissionState.Loading -> {
+                    showLoadingDialog()
                 }
-                dismiss()
-                true
+
+                is BoxRequestPermissionState.Empty -> {
+                    dismissLoadingDialog()
+                    viewModel.launchApp(it.appBean)
+                }
+
+                is BoxRequestPermissionState.Success -> {
+                    dismissLoadingDialog()
+
+                    requestAppPermission(it.appBean, it.list)
+                }
             }
         }
     }
 
-    private fun showTwoStepDialog(
-        titleRes: Int,
-        messageRes: Int,
-        appBean: BoxAppBean,
-        block: (BoxAppBean) -> Unit
-    ) {
-        MaterialDialog(requireContext()).show {
-            title(titleRes)
-            message(text = getString(messageRes, appBean.name))
-            negativeButton(R.string.cancel)
-            positiveButton(R.string.done) {
-                block.invoke(appBean)
+    private val needRequest = AtomicBoolean(false)
+
+    private fun requestAppPermission(appBean: BoxAppBean, list: List<String>) {
+        val permissionX = PermissionX.init(this).permissions(list)
+        if (needRequest.getAndSet(false)) {
+            permissionX.onForwardToSettings { scope, deniedList ->
+                scope.showForwardToSettingsDialog(
+                        deniedList,
+                        getString(R.string.permission_to_setting),
+                        getString(R.string.done),
+                        getString(R.string.cancel)
+                )
+            }
+        }
+        permissionX.request { allGranted, _, _ ->
+            if (allGranted) {
+                viewModel.launchApp(appBean)
+                return@request
+            }
+            MaterialDialog(requireContext()).show {
+                title(R.string.permission_request_denied)
+                message(R.string.permission_denied_hint)
+                positiveButton(R.string.launch_first) { _ ->
+                    viewModel.launchApp(appBean)
+                }
+                negativeButton(R.string.request_again) {
+                    needRequest.set(true)
+                    requestAppPermission(appBean, list)
+                }
             }
         }
     }
+
 
     private val captureID = AtomicInteger()
 
@@ -226,11 +199,5 @@ class BoxAppFragment : BaseFragment(R.layout.fragment_box_apps) {
         return activityViewModel.userChangeLiveData.value?.userID ?: 0
     }
 
-    private val saveDocument = registerForActivityResult(SaveZipDocument()) {
-
-        if (it.uri != null) {
-            viewModel.exportData(it.userID, it.pkg, it.uri)
-        }
-    }
 
 }

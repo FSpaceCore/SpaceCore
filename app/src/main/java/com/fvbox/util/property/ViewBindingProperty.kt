@@ -18,6 +18,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import android.util.Log
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -169,6 +170,10 @@ abstract class LifecycleViewBindingProperty<in R : Any, out V : ViewBinding>(
         val lifecycle = getLifecycleOwner(thisRef).lifecycle
         val viewBinding = viewBinder(thisRef)
         if (lifecycle.currentState == Lifecycle.State.DESTROYED) {
+            Log.w(
+                TAG, "Access to viewBinding after Lifecycle is destroyed or hasn't created yet. " +
+                        "The instance of viewBinding will be not cached."
+            )
             // We can access to ViewBinding after Fragment.onDestroyView(), but don't save it to prevent memory leak
         } else {
             lifecycle.addObserver(ClearOnDestroyLifecycleObserver(this))

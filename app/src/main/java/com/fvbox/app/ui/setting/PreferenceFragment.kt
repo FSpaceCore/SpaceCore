@@ -8,15 +8,11 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.fvbox.R
 import com.fvbox.app.contract.LaunchSearchActivity
+import com.fvbox.util.preference.EmptyPreferenceDataStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/**
- *
- * @Description: preference封装
- * @Author: Jack
- * @CreateDate: 2022/6/1 22:25
- */
+
 abstract class PreferenceFragment : PreferenceFragmentCompat() {
 
     abstract fun getSettingTypeList(): Array<BaseBoxPreference>
@@ -30,6 +26,7 @@ abstract class PreferenceFragment : PreferenceFragmentCompat() {
 
     fun loadData() {
         lifecycleScope.launch(Dispatchers.IO) {
+            preferenceManager.preferenceDataStore = EmptyPreferenceDataStore
             preferenceScreen.removeAll()
             loadSubScreen(preferenceScreen)
         }
@@ -61,6 +58,10 @@ abstract class PreferenceFragment : PreferenceFragmentCompat() {
                 is SingleChoicePreference -> {
                     initSingleChoicePreference(it)
                 }
+
+                is StateChangePreference -> {
+                    initStateChangePreference(it)
+                }
             }
 
             screen.addPreference(preference)
@@ -71,6 +72,7 @@ abstract class PreferenceFragment : PreferenceFragmentCompat() {
         return Preference(requireContext()).apply {
             title = safeGetString(setting.title)
             key = safeGetString(setting.title)
+            summary = safeGetString(setting.subTitle)
             setOnPreferenceClickListener {
                 setting.click.invoke()
                 true
@@ -108,6 +110,7 @@ abstract class PreferenceFragment : PreferenceFragmentCompat() {
             title = safeGetString(setting.title)
             key = safeGetString(setting.title)
             summary = safeGetString(setting.subTitle)
+            setDefaultValue(setting.valueDelegate.get())
             isChecked = setting.valueDelegate.get()
 
             setOnPreferenceChangeListener { _, newValue ->
@@ -139,26 +142,41 @@ abstract class PreferenceFragment : PreferenceFragmentCompat() {
         }
     }
 
-    private val launchSearch =
-        registerForActivityResult(LaunchSearchActivity()) {
-            if (it == null) {
-                return@registerForActivityResult
-            }
+    private fun initStateChangePreference(setting: StateChangePreference): Preference {
+        return SwitchPreferenceCompat(requireContext()).apply {
+            title = safeGetString(setting.title)
+            key = safeGetString(setting.title)
+            summary = safeGetString(setting.subTitle)
+            setDefaultValue(setting.state.get(setting.type))
+            isChecked = setting.state.get(setting.type)
 
-            val key = safeGetString(it.first)
-            this.findPreference<Preference>(key)?.let { preference ->
-                preference.summary = it.second
+            setOnPreferenceChangeListener { _, newValue ->
+                setting.state.set(setting.type, newValue == true)
+                true
             }
         }
+    }
+
+    private val launchSearch = registerForActivityResult(LaunchSearchActivity()) {
+        if (it == null) {
+            return@registerForActivityResult
+        }
+
+        val key = safeGetString(it.first)
+        this.findPreference<Preference>(key)?.let { preference ->
+            preference.summary = it.second
+        }
+    }
 
 
     private fun safeGetString(id: Int): String {
+        if (id == 0) {
+            return ""
+        }
         return try {
             getString(id)
         } catch (e: Exception) {
             ""
         }
     }
-
-
 }

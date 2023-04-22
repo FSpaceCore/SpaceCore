@@ -7,12 +7,7 @@ import com.fvbox.data.bean.box.BoxUserInfo
 import com.fvbox.databinding.ItemInstallUserCheckBinding
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 
-/**
- *
- * @Description: 选择用户
- * @Author: Jack
- * @CreateDate: 2022/5/23 23:07
- */
+
 class UserSelectItem : AbstractBindingItem<ItemInstallUserCheckBinding>() {
 
     override val type: Int

@@ -5,12 +5,7 @@ import com.tencent.mmkv.MMKV
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-/**
- *
- * @Description: mmkv 代理托管,目前只支持五种类型
- * @Author: Jack
- * @CreateDate: 2021/12/20 15:33
- */
+import com.fvbox.util.Log
 
 open class MMKVProperty<Data>(private val default: Data, private val mmkvImpl: MMKV = BoxConfig.mmkv) :
     ReadWriteProperty<Any, Data> {

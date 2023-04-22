@@ -25,12 +25,7 @@ import com.mikepenz.fastadapter.listeners.ClickEventHook
 import com.mikepenz.fastadapter.select.SelectExtension
 import com.mikepenz.fastadapter.select.getSelectExtension
 
-/**
- *
- * @Description: tab 选择
- * @Author: Jack
- * @CreateDate: 2022/5/21 2:25
- */
+
 class UserSelectActivity : BaseActivity() {
 
     private val binding by viewBinding(ActivityUserSelectBinding::bind)

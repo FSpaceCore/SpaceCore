@@ -20,12 +20,7 @@ import com.mikepenz.fastadapter.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.select.getSelectExtension
 import kotlinx.coroutines.launch
 
-/**
- *
- * @Description: 选择用户界面
- * @Author: Jack
- * @CreateDate: 2022/5/23 22:59
- */
+
 class BoxInstallSelectFragment : BaseFragment(R.layout.fragment_box_install_select) {
 
     private val binding by viewBinding(FragmentBoxInstallSelectBinding::bind)

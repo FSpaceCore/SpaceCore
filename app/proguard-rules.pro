@@ -20,19 +20,9 @@
 # hide the original source file name.
 -renamesourcefileattribute SourceFile
 
-# 保护类下面的变量
--keepclassmembers class com.fvbox.data.http.** {
-   private *;
-   public *;
-}
--keep class com.fvbox.util.DesBox.** { *; }
 
 -keep public class * extends android.content.ContentProvider
 
-# 友盟
--keep class com.umeng.** { *; }
--keep class com.uc.** { *; }
--keep class com.efs.** { *; }
 -keepclassmembers class *{
      public<init>(org.json.JSONObject);
 }

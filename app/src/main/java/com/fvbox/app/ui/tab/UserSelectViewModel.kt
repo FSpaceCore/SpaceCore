@@ -11,12 +11,7 @@ import com.fvbox.data.state.BoxActionState
 import com.fvbox.util.CaptureUtil
 import com.fvbox.util.extension.getString
 
-/**
- *
- * @Description: tab选择 （很简单的一个界面，有没有用mvvm的必要）
- * @Author: Jack
- * @CreateDate: 2022/5/21 2:28
- */
+
 class UserSelectViewModel : BaseViewModel() {
 
     private val mUserLiveData = MutableLiveData<List<BoxUserInfo>>()

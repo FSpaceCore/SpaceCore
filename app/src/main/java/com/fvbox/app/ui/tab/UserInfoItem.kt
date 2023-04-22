@@ -6,6 +6,7 @@ import android.widget.ImageView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.fvbox.R
+import com.fvbox.app.ui.install.progress.InstallItemItem
 import com.fvbox.data.bean.box.BoxUserInfo
 import com.fvbox.databinding.ItemUserSelectBinding
 import com.fvbox.util.CaptureUtil
@@ -13,12 +14,7 @@ import com.fvbox.util.coli.TopCropTransformation
 import com.fvbox.util.extension.dp
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 
-/**
- *
- * @Description: item
- * @Author: Jack
- * @CreateDate: 2022/5/17 23:21
- */
+
 
 class UserInfoItem : AbstractBindingItem<ItemUserSelectBinding>() {
 

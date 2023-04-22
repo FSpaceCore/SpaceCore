@@ -2,6 +2,6 @@
 <paths>
 
     <external-files-path
-        name="apk"
-        path="apk" />
+        name="external_files"
+        path="." />
 </paths>

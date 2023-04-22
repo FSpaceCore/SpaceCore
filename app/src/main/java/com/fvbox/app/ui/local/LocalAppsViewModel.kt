@@ -5,12 +5,7 @@ import com.fvbox.app.base.BaseViewModel
 import com.fvbox.data.BoxRepository
 import com.fvbox.data.state.LocalAppState
 
-/**
- *
- * @Description: app list viewModel
- * @Author: Jack
- * @CreateDate: 2022/5/16 22:04
- */
+
 class LocalAppsViewModel : BaseViewModel() {
 
     private val localAppLiveData = MutableLiveData<LocalAppState>()

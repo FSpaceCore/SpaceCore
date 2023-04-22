@@ -1,44 +1,23 @@
 <resources>
-    <!--    <string name="app_name">FvBox</string>-->
+    <string name="app_name">DualMeta</string>
+    <string name="app_name_32">DualMeta32</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="about_app">About App</string>
     <string name="install_app">Install App</string>
     <string name="install_finish">Install Finish</string>
-    <string name="install_fail">Install Failed:%s</string>
     <string name="user_list">Space List</string>
     <string name="change_name">Rename Space</string>
     <string name="add_user">Create Space</string>
     <string name="delete_user">Delete User</string>
     <string name="delete_success">Delete Successed</string>
-    <string name="delete_fail">Delete Fail</string>
     <string name="app_setting">Setting</string>
     <string name="release_memory">Release Memory</string>
     <string name="release_memory_finish">Release Successed</string>
     <string name="delete_user_msg">Whether to delete the user and uninstall all the apps installed by him, the data will not be recovered！</string>
     <string name="empty_empty">Absolutely Empty</string>
-    <string name="no_login">No Login</string>
-    <string name="click_to_login">Login</string>
-    <string name="login">Login</string>
-    <string name="register">Register</string>
-    <string name="register_now">Register</string>
-    <string name="login_now">Login</string>
-    <string name="account">Account</string>
-    <string name="password">Password</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="email">Email</string>
-    <string name="no_null">%s cannot be empty</string>
-    <string name="email_format_fail">Incorrect Email format</string>
-    <string name="password_6">Password must be at least 6 digits</string>
-    <string name="password_no_equals">Passwords do not match</string>
     <string name="open_fail">Open Fail</string>
-    <string name="login_success">Login Successed</string>
-    <string name="login_fail">Login Failed %s</string>
-    <string name="register_fail">Register Failed %s</string>
-    <string name="logout">Logout</string>
-    <string name="logout_msg">Are you sure you want to log out？You can log in again later</string>
 
     <string name="import_data">Restore Data</string>
     <string name="import_success">Restore Data Successed</string>
@@ -50,16 +29,17 @@
     <string name="clear_data_hint">Whether to clear the data of %s, the data will not be recovered！</string>
     <string name="force_stop">Force Stop</string>
     <string name="force_stop_hint">Whether to forcibly stop%s</string>
+    <string name="permission_manager">Permission Manager</string>
 
     <string name="select_num">Selected:%d</string>
-    <string name="multi_mode">Multiple Selection</string>
 
     <string name="need_install_app">Software to install</string>
     <string name="install_to_user">Install for</string>
 
-    <string name="core_settings">Core Setting</string>
     <string name="general_settings">General Setting</string>
-    <string name="setting_force_io">Hide stroage</string>
+    <string name="feature_setting">Special Function</string>
+    <string name="feature_setting_hint">Better simulation of real environment</string>
+    <string name="setting_force_io">Hide Storage</string>
     <string name="setting_force_io_sub">When enabled, virtual applications can be prevented from detecting storage paths</string>
     <string name="setting_visible_package">Visible App</string>
     <string name="setting_visible_package_sub">When enabled,the virtual application can obtain the installed APP of the local machine</string>
@@ -73,10 +53,6 @@
     <string name="setting_hide_root_sub">When enabled,the virtual application cannot detect whether there is a root in the local machine</string>
     <string name="setting_disable_kill">Anti Crash</string>
     <string name="setting_disable_kill_sub">When enabled,Prevent APP flash back to the greatest extent</string>
-    <string name="setting_use_hook">Enhanced Edition</string>
-    <string name="setting_use_hook_sub">With the enhanced version scheme, it can be compatible with more APPs and avoid detection to some extent. If the APP cannot be opened after opening, please close it.</string>
-    <string name="setting_stable_pattern">Stable mode</string>
-    <string name="setting_stable_pattern_sub">After being opened, unnecessary function processing will be reduced and runtime stability will be increased.</string>
 
     <string name="fake_device_setting">Fake Device</string>
     <string name="fake_device_enable">Enable to Camouflage Device</string>
@@ -93,36 +69,23 @@
     <string name="fake_device_bootId">bootID</string>
     <string name="fake_device_deviceId">deviceID</string>
     <string name="fake_device_wifiMac">Mac</string>
-    <string name="random_device_config">Random Config</string>
     <string name="origin_device_config">Reset Config</string>
 
-    <string name="network_error">Network connection error</string>
     <string name="exit_app">Exit</string>
-    <string name="feedback">Feedback</string>
-    <string name="has_new_msg">If there is a new message reply, do you want to go to feedback</string>
+    <string name="telegram">Telegram</string>
     <string name="config_load_fail">App configuration loading failed</string>
-
-    <string name="check_update">Check Update</string>
-    <string name="version_is_newest">Latest version</string>
-    <string name="new_version">New Version %s</string>
-    <string name="update_now">Update Now</string>
-    <string name="update_next">Next time</string>
-    <string name="ignore_version">Ignore Update</string>
-    <string name="browser_download">Browser Download</string>
-    <string name="re_download">ReDownload</string>
-    <string name="back_download">Background</string>
-    <string name="install">Install</string>
 
     <string name="space">Space</string>
     <string name="permission_to_setting">Permission request is denied. Please grant permission manually in settings</string>
-    <string name="permission_denied">Permission request denied</string>
+    <string name="permission_request_denied">Permission request denied</string>
+    <string name="permission_denied_hint">If the host does not have the permission allowed by default for dual opening APP, the dual opening APP may run abnormally. Do you want to continue to start?</string>
 
-    <string name="upload_logcat">Upload Log</string>
-    <string name="upload_msg">The application log will be uploaded in the background.</string>
-    <string name="upload_success">Log upload succeeded</string>
-    <string name="upload_error">Log upload failed, please check the network！</string>
-    <string name="index_web">Website</string>
-    <string name="index_github">Github</string>
+    <string name="permission_manager_hint">Manage app runtime permissions</string>
+    <string name="export_data_hint">Export app data to local</string>
+    <string name="launch_first">Direct Start</string>
+    <string name="request_again">ReRequest</string>
+    <string name="app_shortcut_hint">Create desktop shortcuts for this app</string>
+
     <string name="xposed_manager">Xposed Manager</string>
 
     <string name="developering">Coming Soon</string>
@@ -144,4 +107,26 @@
     <string name="add_shortcut_fail_msg">If adding fails, please go to System Settings to open the permission of "Create Desktop Shortcut" for %s</string>
     <string name="no_reminders">No Reminder</string>
     <string name="cannot_create_shortcut">This launcher does not support creating shortcuts</string>
+    <string name="app_info">App Info</string>
+
+    <string name="app_manager">App Manager</string>
+    <string name="permission_grant">Grant</string>
+    <string name="permission_deny">Deny</string>
+    <string name="permission_granted">Granted</string>
+    <string name="permission_denied">Denied</string>
+    <string name="permission_need_request">Need Request</string>
+    <string name="permission_host_permission">Host Permission</string>
+
+
+    <string name="package_manger">Component Manager</string>
+    <string name="package_manager_hint">Manage four components and processes</string>
+    <string name="activity">Activity</string>
+    <string name="service">Service</string>
+    <string name="broadcast">Broadcast</string>
+    <string name="content_provider">ContentProvider</string>
+    <string name="process">Process</string>
+
+    <string name="success_with_reboot">The modification is successful, and the software restarts to take effect</string>
+    <string name="reboot_now">Restart</string>
+    <string name="reboot_success">Reboot Success</string>
 </resources>

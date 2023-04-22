@@ -11,12 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.gyf.immersionbar.ImmersionBar
 
 
-/**
- *
- * @Description:
- * @Author: Jack
- * @CreateDate: 2022/5/17 22:05
- */
+import com.fvbox.util.Log
 
 var mToast: Toast? = null
 
@@ -84,8 +79,15 @@ fun Fragment.showSnackBar(
     actionText: String? = null,
     actionCallback: ((View) -> Unit)? = null
 ) {
+    if (this.isRemoving || this.isDetached) {
+        return
+    }
     if (any == null) {
         return
     }
     view?.showSnackBar(any, actionText, actionCallback)
+}
+
+fun hideSnackBar(){
+    mSnackBar?.dismiss()
 }

@@ -6,12 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContract
 
-/**
- *
- * @description: open zip for SAF
- * @author: Jack
- * @create: 2022-06-12
- */
+
 class OpenZipDocument : ActivityResultContract<Unit, Uri?>() {
 
     override fun createIntent(context: Context, input: Unit): Intent {

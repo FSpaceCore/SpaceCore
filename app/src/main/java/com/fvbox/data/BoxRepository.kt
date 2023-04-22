@@ -1,24 +1,23 @@
 package com.fvbox.data
 
 import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
+import android.net.Uri
 import com.fvbox.data.bean.box.BoxAppBean
 import com.fvbox.data.bean.box.BoxInstallBean
 import com.fvbox.data.bean.box.BoxUserInfo
 import com.fvbox.data.bean.local.LocalAppBean
 import com.fvbox.lib.FCore
-import com.fvbox.util.AbiUtils
+import com.fvbox.lib.utils.AbiUtils
 import com.fvbox.util.ContextHolder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
-/**
- *
- * @Description: box controller
- * @Author: Jack
- * @CreateDate: 2022/5/15 14:49
- */
+
 object BoxRepository {
 
     private val localAppList = mutableListOf<LocalAppBean>()
@@ -54,7 +53,14 @@ object BoxRepository {
                     val name = it.loadLabel(packageManager).toString()
                     val icon = it.loadIcon(packageManager)
 
-                    localAppList.add(LocalAppBean(name, it.packageName, icon, isSupport))
+                    localAppList.add(
+                        LocalAppBean(
+                            name,
+                            it.packageName,
+                            icon = icon,
+                            isSupport = isSupport
+                        )
+                    )
                 }
 
 
@@ -86,6 +92,35 @@ object BoxRepository {
         }
     }
 
+    fun getLocalApkInfo(apk: File, uri: Uri): List<LocalAppBean> {
+        try {
+            val input = ContextHolder.get().contentResolver.openInputStream(uri)
+            input?.copyTo(FileOutputStream(apk))
+            val packageManager = ContextHolder.get().packageManager
+            val info = packageManager.getPackageArchiveInfo(
+                apk.absolutePath,
+                PackageManager.GET_ACTIVITIES
+            )!!
+            val localAppBean = LocalAppBean(
+                info.applicationInfo.loadLabel(packageManager).toString(),
+                info.packageName,
+                apk,
+                info.applicationInfo.loadIcon(packageManager),
+                AbiUtils.isSupport(apk)
+            )
+            return listOf(localAppBean)
+
+        } catch (e: IOException) {
+            return emptyList()
+        }
+    }
+
+    fun install(path: File, pkg: String, userID: Int): BoxInstallBean {
+        val fvCore = FCore.get()
+        val installResult = fvCore.installPackageAsUser(path, userID)
+        return BoxInstallBean(pkg, installResult.success, installResult.msg ?: "")
+    }
+
     fun install(pkg: String, userID: Int): BoxInstallBean {
         val fvCore = FCore.get()
         val installResult = fvCore.installPackageAsUser(pkg, userID)
@@ -99,6 +134,7 @@ object BoxRepository {
      */
     fun uninstall(pkg: String, userID: Int) {
         FCore.get().uninstallPackageAsUser(pkg, userID)
+        BoxDatabase.instance.ruleDao().removeAppRule(pkg, userID)
     }
 
     /**
@@ -124,20 +160,20 @@ object BoxRepository {
      * @return List<FUserInfo>
      */
     fun getUserList(): List<BoxUserInfo> {
-        return listOf(
-            BoxUserInfo(0)
-        )
+        return FCore.get().users.map {
+            BoxUserInfo(it.id)
+        }
     }
 
     /**
      * 新建用户
      */
     fun createUser() {
-//        FCore.get().apply {
-//            val list = getUsers()
-//            val lastID = list.lastOrNull()?.id ?: -1
-//            createUser(lastID + 1)
-//        }
+        FCore.get().apply {
+            val list = users
+            val lastID = list.lastOrNull()?.id ?: -1
+            createUser(lastID + 1)
+        }
     }
 
     /**
@@ -145,7 +181,7 @@ object BoxRepository {
      * @param userID Int 用户ID
      */
     fun deleteUser(userID: Int) {
-//        FCore.get().deleteUser(userID)
+        FCore.get().deleteUser(userID)
     }
 
     /**
@@ -167,8 +203,8 @@ object BoxRepository {
             for (app in list) {
                 app.packageInfo ?: continue
                 val applicationInfo = app.packageInfo!!.applicationInfo
-                val name = applicationInfo.loadLabel(getPackageManager()).toString()
-                val icon = applicationInfo.loadIcon(getPackageManager())
+                val name = applicationInfo.loadLabel(packageManager).toString()
+                val icon = applicationInfo.loadIcon(packageManager)
                 val bean = BoxAppBean(userID, applicationInfo.packageName, name, icon)
                 appList.add(bean)
             }
@@ -179,4 +215,9 @@ object BoxRepository {
     fun stopAllPackage() {
         FCore.get().stopAllPackages()
     }
+
+    fun restartCoreSystem(){
+        FCore.get().restartCoreSystem()
+    }
+
 }

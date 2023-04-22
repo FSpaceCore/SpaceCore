@@ -19,12 +19,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 
-/**
- *
- * @Description:
- * @Author: Jack
- * @CreateDate: 2022/5/19 22:24
- */
+import com.fvbox.util.Log
 object CaptureUtil {
     /**
      * 将View转换成Bitmap

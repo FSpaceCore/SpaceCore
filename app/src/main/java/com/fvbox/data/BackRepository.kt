@@ -8,12 +8,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 
-/**
- *
- * @description: 导入导出数据相关类
- * @author: Jack
- * @create: 2022-06-12
- */
+
 object BackRepository {
 
     fun importData(userID: Int, uri: Uri): String? {
