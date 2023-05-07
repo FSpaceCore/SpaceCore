@@ -90,7 +90,7 @@ This method supports running without installation and will not be affected by sy
 FCore.get().installPackageAsUser(new File("/sdcard/wechat.apk"), USER_ID)
 ```
 
-#### Step 4. Launch sandboxed application
+### 3. Launch sandboxed application
 
 ```java
 FCore.get().launchApk("package_name", USER_ID)
