@@ -170,7 +170,7 @@ updatePermission | Update app permission rules
 revokePermission | Remove app permission rules (the app will follow the actual permissions of the host APP)
 
 
-### 内核配置：
+### SandBox Configuration：
 
 METHOD | DESCRIPTION
 ---|--- 
