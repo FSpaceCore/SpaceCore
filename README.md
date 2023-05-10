@@ -13,7 +13,7 @@ Official website: [https://spacecore.dev](https://spacecore.dev)
 
 ##### SpaceCore SDK
  * The SpaceCore SDK is a free product that is **NOT** open-source, and you are free to use it without notifying the author. It can also be used for commercial purposes. [SpaceCore SDK Download](https://github.com/FSpaceCore/SpaceCore/releases)
- * ** For any customization **, please contact  [support@spacecore.dev](mailto:support@spacecore.dev)
+ * **For any customization**, please contact  [support@spacecore.dev](mailto:support@spacecore.dev)
 
 ##### SpaceCore Demo
  * The SpaceCore Demo is intended to demonstrate the usage of the SpaceCore SDK, which can be found in the code within this repository.  [SpaceCore Demo Release Download](https://github.com/FSpaceCore/SpaceCore/releases)
