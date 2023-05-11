@@ -5,6 +5,7 @@ SpaceCore是一个基于Android系统的应用程序虚拟化引擎，一个Andr
 
 官网：[https://spacecore.dev](https://spacecore.dev)
 
+Telegram：[@android_spacecore](https://t.me/android_spacecore)
 
 
 ## 使用说明
