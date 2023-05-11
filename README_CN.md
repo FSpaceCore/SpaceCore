@@ -183,17 +183,6 @@ setSpaceTaskDescriptionPrefix | 设置最近任务栏的应用前缀（默认：
 setEnableLauncherView | 是否启用 应用启动图
 restartCoreSystem | 重启内核（所有应用将会杀死）
 
-### 内核虚拟GPS定位：
-
-方法 | 描述 | en 
----|--- | ---
-disableFakeLocation | 禁用某个用户的虚拟定位
-enableFakeLocation | 启用某个用户的虚拟定位
-setLocation | 设置某个用户的虚拟定位参数
-getLocation | 获取某个用户的虚拟定位参数
-setGlobalLocation | 设置全局虚拟定位参数
-getGlobalLocation | 获取全局虚拟定位参数
-
 
 ## 规则配置系统
 在面对各种应用时，支持配置不同的运行时参数，虚拟机参数来达到适配，SpaceCore支持强大的规则配置系统，能对每个应用定制专属的规则，可以通过云配置方式，动态更新规则库。规则支持的功能正在逐步开发。
