@@ -7,6 +7,8 @@ SpaceCore is an "Application Virtualization Engine" on Android, also known as a
 
 Official website: [https://spacecore.dev](https://spacecore.dev)
 
+Telegram：[@android_spacecore](https://t.me/android_spacecore)
+
 <br>
 
 ## Instructions
