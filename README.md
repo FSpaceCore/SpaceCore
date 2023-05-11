@@ -183,17 +183,6 @@ setSpaceTaskDescriptionPrefix | Set the application prefix in the recent tasks l
 setEnableLauncherView | Whether to enable splash screen
 restartCoreSystem | Restart the kernel (all applications will be killed)
 
-### Virtual GPS Location：
-
-METHOD | DESCRIPTION
----|--- 
-disableFakeLocation | Disable virtual location for a certain user
-enableFakeLocation | Enable virtual location for a certain user
-setLocation | Set virtual location parameters for a certain user
-getLocation | Get virtual location parameters for a certain user
-setGlobalLocation | Set global virtual location parameters
-getGlobalLocation | Get global virtual location parameters
-
 
 ## Rule Configuration System
 When dealing with various applications, SpaceCore supports configuring different runtime parameters and virtual machine parameters to achieve adaptation. SpaceCore supports a powerful rule configuration system that can customize exclusive rules for each application. The rule library can be dynamically updated through cloud configuration. The supported rule functions are gradually under development.
