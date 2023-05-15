@@ -5,6 +5,7 @@ SpaceCore是一个基于Android系统的应用程序虚拟化引擎，一个Andr
 
 官网：[https://spacecore.dev](https://spacecore.dev)
 
+Telegram：[@android_spacecore](https://t.me/android_spacecore)
 
 
 ## 使用说明
@@ -182,17 +183,6 @@ setBackToHome | 当沙盒应用退出时是否返回宿主
 setSpaceTaskDescriptionPrefix | 设置最近任务栏的应用前缀（默认：F{用户ID}）
 setEnableLauncherView | 是否启用 应用启动图
 restartCoreSystem | 重启内核（所有应用将会杀死）
-
-### 内核虚拟GPS定位：
-
-方法 | 描述 | en 
----|--- | ---
-disableFakeLocation | 禁用某个用户的虚拟定位
-enableFakeLocation | 启用某个用户的虚拟定位
-setLocation | 设置某个用户的虚拟定位参数
-getLocation | 获取某个用户的虚拟定位参数
-setGlobalLocation | 设置全局虚拟定位参数
-getGlobalLocation | 获取全局虚拟定位参数
 
 
 ## 规则配置系统
