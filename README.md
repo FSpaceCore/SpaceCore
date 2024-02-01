@@ -11,13 +11,6 @@ Telegram：[@android_spacecore](https://t.me/android_spacecore)
 
 <br>
 
-# Google Play Store
-If you need to use it for Google Play Store deployment, please don't use the public version of the SDK, otherwise it will cause account blocking. 
-
-please contact Telegram：[@Samuel](https://t.me/samuel_last_for_long) or Email: support@spacecore.dev to get the Google Play Store special version.
-
-<br>
-
 ## Instructions
 
 ##### SpaceCore SDK
