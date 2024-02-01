@@ -7,15 +7,6 @@ SpaceCore是一个基于Android系统的应用程序虚拟化引擎，一个Andr
 
 Telegram：[@android_spacecore](https://t.me/android_spacecore)
 
-<br>
-
-# Google Play商店上架
-如果您需要将其用于 Google Play商店上架，请不要使用公共版本的 SDK，否则会导致账户被封。
-
-请联系 Telegram：[@Samuel](https://t.me/samuel_last_for_long) 或发送电子邮件至 support@spacecore.dev 以获取 Google Play 专用版本。
-
-<br>
-
 ## 使用说明
 
 ##### SpaceCore SDK
